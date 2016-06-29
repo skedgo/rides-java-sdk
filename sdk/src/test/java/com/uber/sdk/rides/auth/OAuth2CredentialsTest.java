@@ -22,9 +22,7 @@
 
 package com.uber.sdk.rides.auth;
 
-import com.google.api.client.auth.oauth2.BearerToken;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.auth.oauth2.StoredCredential;
+import com.google.api.client.auth.oauth2.*;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpExecuteInterceptor;
 import com.google.api.client.http.LowLevelHttpRequest;
@@ -34,6 +32,7 @@ import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.testing.json.MockJsonFactory;
 import com.google.api.client.util.store.AbstractDataStoreFactory;
 import com.google.api.client.util.store.DataStore;
+import com.google.api.client.util.store.MemoryDataStoreFactory;
 import com.uber.sdk.core.auth.Scope;
 
 import org.junit.Before;
@@ -186,6 +185,20 @@ public class OAuth2CredentialsTest {
         OAuth2Credentials oAuth2Credentials = new OAuth2Credentials.Builder()
                 .build();
     }
+
+    @Test
+    public void build_withCredentialRefreshListener() throws Exception {
+        MemoryDataStoreFactory dataStoreFactory = new MemoryDataStoreFactory();
+        CredentialRefreshListener credentialRefreshListener = new DataStoreCredentialRefreshListener("id", dataStoreFactory);
+        OAuth2Credentials oAuth2Credentials = new OAuth2Credentials.Builder()
+                .setClientSecrets("CLIENT_ID", "CLIENT_SECRET")
+                .setScopes(Arrays.asList(Scope.PROFILE, Scope.REQUEST, Scope.HISTORY))
+                .addRefreshListener(credentialRefreshListener)
+                .build();
+        assertEquals(oAuth2Credentials.getAuthorizationCodeFlow().getRefreshListeners().size(), 1);
+        assertEquals(oAuth2Credentials.getAuthorizationCodeFlow().getRefreshListeners().iterator().next(), credentialRefreshListener);
+    }
+
 
     @Test
     public void authenticate() throws Exception {

@@ -22,16 +22,12 @@
 
 package com.uber.sdk.rides.auth;
 
-import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
-import com.google.api.client.auth.oauth2.AuthorizationCodeTokenRequest;
-import com.google.api.client.auth.oauth2.BearerToken;
-import com.google.api.client.auth.oauth2.ClientParametersAuthentication;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.auth.oauth2.TokenResponse;
+import com.google.api.client.auth.oauth2.*;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.Lists;
 import com.google.api.client.util.store.AbstractDataStoreFactory;
 import com.google.api.client.util.store.DataStore;
 import com.google.api.client.util.store.MemoryDataStoreFactory;
@@ -76,6 +72,10 @@ public class OAuth2Credentials {
         private AuthorizationCodeFlow authorizationCodeFlow;
         private AbstractDataStoreFactory credentialDataStoreFactory;
         private String loginHost = "https://login.uber.com";
+
+        /** Refresh listeners provided by the client. */
+        private Collection<CredentialRefreshListener> refreshListeners = Lists.newArrayList();
+
 
         /**
          * Set the {@link SessionConfiguration} information
@@ -148,6 +148,17 @@ public class OAuth2Credentials {
             return this;
         }
 
+
+        /**
+         * Adds a listener for refresh token results.
+         **
+         * @param refreshListener refresh listener
+         */
+        public Builder addRefreshListener(CredentialRefreshListener refreshListener) {
+            refreshListeners.add(com.google.api.client.util.Preconditions.checkNotNull(refreshListener));
+            return this;
+        }
+
         /**
          * Sets the authorization code flow.
          */
@@ -209,6 +220,7 @@ public class OAuth2Credentials {
                     if (oAuth2Credentials.scopes != null && !oAuth2Credentials.scopes.isEmpty()) {
                         builder.setScopes(oAuth2Credentials.scopes);
                     }
+                    builder.setRefreshListeners(refreshListeners);
                     authorizationCodeFlow =
                             builder.setDataStoreFactory(credentialDataStoreFactory).build();
                 } catch (IOException e) {
