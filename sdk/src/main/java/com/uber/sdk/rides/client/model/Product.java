@@ -30,12 +30,14 @@ package com.uber.sdk.rides.client.model;
 public class Product {
 
     private String product_id;
+    private String short_description;
     private String display_name;
     private String description;
     private int capacity;
     private String image;
     private boolean shared;
     private boolean upfront_fare_enabled;
+    private PriceDetail price_details;
 
     /**
      * A unique identifier representing a specific product for a given latitude &amp; longitude. For
@@ -85,6 +87,21 @@ public class Product {
      */
     public boolean isUpfrontFareEnabled(){
         return upfront_fare_enabled;
+    }
+
+    /**
+     * An abbreviated description of the product. Localized according to Accept-Language header.
+     */
+    public String getShortDescription() {
+        return short_description;
+    }
+
+    /**
+     * The basic price details (not including any surge pricing adjustments).
+     * This field is null for products with metered fares (taxi) or upfront prices (uberPOOL).
+     */
+    public PriceDetail getPriceDetails() {
+        return price_details;
     }
 }
 
