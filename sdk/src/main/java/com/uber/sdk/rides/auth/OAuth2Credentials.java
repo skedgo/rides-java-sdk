@@ -81,11 +81,11 @@ public class OAuth2Credentials {
          * Set the {@link SessionConfiguration} information
          */
         public Builder setSessionConfiguration(SessionConfiguration configuration) {
-            if (scopes != null) {
+            if (scopes == null) {
                 this.scopes = new HashSet<>(configuration.getScopes());
             }
 
-            if (customScopes != null) {
+            if (customScopes == null) {
                 this.customScopes = new HashSet<>(configuration.getCustomScopes());
             }
 
