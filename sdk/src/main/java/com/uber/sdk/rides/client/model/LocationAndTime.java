@@ -6,7 +6,9 @@ package com.uber.sdk.rides.client.model;
  */
 public class LocationAndTime extends Location {
 
-    private int eta;
+    // for pickup, ETA is only available when the trips is accepted or arriving.
+    // for destination, ETA is only available once the trip is in progress.
+    private Integer eta;
 
     /**
      * Constructor.
@@ -18,7 +20,7 @@ public class LocationAndTime extends Location {
         super(latitude, longitude);
     }
 
-    public int getEta() {
+    public Integer getEta() {
         return eta;
     }
 }
