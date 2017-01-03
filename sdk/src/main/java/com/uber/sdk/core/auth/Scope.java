@@ -109,7 +109,7 @@ public enum Scope {
     /**
      * Gets the bit value that represents this.
      *
-     * @return the int value that represents this’.
+     * @return the int value that represents this.
      */
     public int getBitValue() {
         return mBitValue;
