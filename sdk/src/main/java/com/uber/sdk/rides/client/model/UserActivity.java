@@ -22,6 +22,9 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.annotation.Nullable;
 
 /**
@@ -29,6 +32,8 @@ import javax.annotation.Nullable;
  * <a href="https://developer.uber.com/docs/rides/api/v12-history">User Activity</a> for more
  * information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class  UserActivity {
 
     private String request_id;

@@ -22,11 +22,16 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * A promotion for a new user. See
  * <a href="https://developer.uber.com/v1/endpoints/#promotions">Promotions</a> for more
  * information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Promotion {
 
     private String display_text;

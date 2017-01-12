@@ -22,6 +22,9 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
 import javax.annotation.Nullable;
@@ -31,6 +34,8 @@ import javax.annotation.Nullable;
  * <a href="https://developer.uber.com/docs/rides/api/v1-requests-estimate">Request Estimate</a>
  * for more information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RideEstimate {
 
     @Nullable
@@ -99,6 +104,8 @@ public class RideEstimate {
     /**
      * Details of an estimate for a product that does not use up front pricing.
      */
+    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Estimate {
         @Nullable
         private Integer minimum;
@@ -198,6 +205,8 @@ public class RideEstimate {
     /**
      * Details of the estimated distance.
      */
+    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Trip {
 
         private String distance_unit;

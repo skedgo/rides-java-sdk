@@ -22,11 +22,17 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * A product representing a type of ride on the Uber platform. See
  * <a href="https://developer.uber.com/v1/endpoints/#product-types">Products</a>
  * for more information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE,
+                isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
     private String product_id;

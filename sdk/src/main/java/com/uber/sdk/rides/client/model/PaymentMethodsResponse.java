@@ -22,6 +22,9 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 /**
@@ -29,6 +32,8 @@ import java.util.List;
  * <a href="https://developer.uber.com/docs/v1-payment-methods">Payment Methods</a>
  * for more information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentMethodsResponse {
 
     private List<PaymentMethod> payment_methods;

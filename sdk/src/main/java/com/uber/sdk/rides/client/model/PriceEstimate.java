@@ -22,6 +22,9 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
 import javax.annotation.Nullable;
@@ -31,6 +34,8 @@ import javax.annotation.Nullable;
  * <a href="https://developer.uber.com/docs/rides/api/v1-estimates-price">Price Estimates</a>
  * for more information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PriceEstimate {
 
     private String product_id;

@@ -22,6 +22,9 @@
 
 package com.uber.sdk.rides.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -31,6 +34,8 @@ import java.util.List;
  * <a href="https://developer.uber.com/docs/rides/api/v1-requests-receipt">Ride Request Receipt</a>
  * for more information.
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RideReceipt {
     private String request_id;
     @Nullable
