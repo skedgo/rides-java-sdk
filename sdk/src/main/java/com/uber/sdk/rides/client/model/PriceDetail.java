@@ -13,7 +13,7 @@ import java.util.List;
 public class PriceDetail {
 
     private float base;
-    private float minimum;
+    private Float minimum;
     private float cost_per_minute;
     private float cost_per_distance;
     private String distance_unit;
@@ -31,7 +31,7 @@ public class PriceDetail {
     /**
      * The minimum price of a trip
      */
-    public float getMinimum() {
+    public Float getMinimum() {
         return minimum;
     }
 
