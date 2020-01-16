@@ -49,6 +49,7 @@ dependencies {
     compile deps.network.okhttp
     compile deps.network.okhttpLoggingInterceptor
     compile deps.misc.jsr305
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.4'
 
     testCompile deps.test.junit
     testCompile deps.test.assertj
