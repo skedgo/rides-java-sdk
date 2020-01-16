@@ -59,3 +59,16 @@ dependencies {
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+
+
+apply plugin: 'maven'
+
+task createPom << {
+    pom {
+        project {
+            groupId 'com.uber.sdk'
+            artifactId 'core'
+            version '0.8.2'
+        }
+    }.writeTo("build/libs/pom.xml")
+}
