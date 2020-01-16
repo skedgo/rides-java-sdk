@@ -11,20 +11,50 @@ Register your app in the [Uber developer dashboard](https://developer.uber.com/d
 Note: Using Android? Be sure to checkout the [Uber Android SDK](github.com/uber/rides-android-sdk) in addition, which has native authentication mechanisms.
 
 #### Gradle
-If using Gradle, add this to your project’s `build.gradle` file:
+
+Uber Rides SDK:
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.uber.sdk/uber-rides.svg)](https://mvnrepository.com/artifact/com.uber.sdk/uber-rides)
+
 ```gradle
 dependencies {
-    compile 'com.uber.sdk:rides:0.6.0'
+    compile 'com.uber.sdk:uber-rides:x.y.z'
+}
+```
+
+Uber Oauth Client Adapter:
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.uber.sdk/uber-core-oauth-client-adapter.svg)](https://mvnrepository.com/artifact/com.uber.sdk/uber-core-oauth-client-adapter)
+
+```gradle
+dependencies {
+    compile 'com.uber.sdk:uber-core-oauth-client-adapter:x.y.z'
 }
 ```
 
 #### Maven
-If using Maven, add this to your project's `pom.xml` file:
+
+Uber Rides SDK:
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.uber.sdk/uber-rides.svg)](https://mvnrepository.com/artifact/com.uber.sdk/uber-rides)
+
 ```xml
 <dependency>
   <groupId>com.uber.sdk</groupId>
-  <artifactId>rides</artifactId>
-  <version>0.6.0</version>
+  <artifactId>uber-rides</artifactId>
+  <version>x.y.z</version>
+</dependency>
+```
+
+Uber Oauth Client Adapter:
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.uber.sdk/uber-core-oauth-client-adapter.svg)](https://mvnrepository.com/artifact/com.uber.sdk/uber-core-oauth-client-adapter)
+
+```xml
+<dependency>
+  <groupId>com.uber.sdk</groupId>
+  <artifactId>uber-core-oauth-client-adapter</artifactId>
+  <version>x.y.z</version>
 </dependency>
 ```
 
@@ -117,7 +147,7 @@ service.getUserProfile().enqueue(new Callback<UserProfile>() {
 
 
 ## Samples for Common Calls
-Use the Java classes in the [samples](https://github.com/uber/rides-java-sdk/tree/master/samples/cmdline-sample) folder to test standard requests. Alternatively, you can download a sample from the [releases page](https://github.com/uber/rides-java-sdk/releases/tag/v0.1.0) to try them out.
+Use the Java classes in the [samples](https://github.com/uber/rides-java-sdk/tree/master/samples/cmdline-sample) folder to test standard requests. Alternatively, you can download a sample from the [releases page](https://github.com/uber/rides-java-sdk/releases) to try them out.
 
 For full documentation, visit our [Developer Site](https://developer.uber.com/v1/endpoints/).
 
@@ -149,7 +179,7 @@ SessionConfiguration config = existingConfig.newBuilder().setEnvironment(Environ
 CredentialsSession session = new CredentialsSession(config, credential));
 RidesService service = UberRidesApi.with(session);
 ```
-See our [documentation](https://developer.uber.com/v1/sandbox/) to learn more about the sandbox environment.
+See our [documentation](https://developer.uber.com/docs/riders/guides/sandbox) to learn more about the sandbox environment.
 
 ### Update a ride in the sandbox
 If you request a ride in the sandbox, you can step through the different states of the ride.
